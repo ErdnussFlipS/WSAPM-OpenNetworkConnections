@@ -9,7 +9,7 @@
              xmlns:vm="clr-namespace:de.efsdev.wsapm.OpenNetworkConnections.ViewModel"
              xmlns:viewext="clr-namespace:de.efsdev.wsapm.OpenNetworkConnections.Library.View"
              mc:Ignorable="d" 
-             d:DesignHeight="316.009" d:DesignWidth="629.931" MinWidth="800" MinHeight="600" Width="Auto">
+             d:DesignHeight="601.986" d:DesignWidth="800" MinWidth="800" MinHeight="600" Width="Auto">
     <UserControl.Resources>
         <ResourceDictionary>
             <!--<vm:ViewModelLocator x:Key="Locator"/>-->
@@ -25,7 +25,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Margin="0" Orientation="Vertical">
             <Grid Height="30">
@@ -53,27 +52,31 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <StackPanel Margin="0" Orientation="Vertical" Grid.Row="1">
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <Grid Height="30">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Content="Active connections" VerticalContentAlignment="Center"/>
-                <Button Content="Refresh" Command="{Binding RefreshActiveConnectionsCommand, IsAsync=True}" Grid.Column="1" Margin="0" HorizontalContentAlignment="Center" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
+                <Button Content="Refresh" Command="{Binding RefreshActiveConnectionsCommand, IsAsync=True}" Grid.Column="1" HorizontalContentAlignment="Center" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
             </Grid>
-            <DataGrid Margin="0" IsReadOnly="True" ItemsSource="{Binding ActiveConnections, Mode=OneWay}" Height="450" AutoGenerateColumns="False" HorizontalGridLinesBrush="{DynamicResource DataGridLineBrush}" VerticalGridLinesBrush="{DynamicResource DataGridLineBrush}">
+            <DataGrid IsReadOnly="True" ItemsSource="{Binding ActiveConnections, Mode=OneWay}" AutoGenerateColumns="False" HorizontalGridLinesBrush="{DynamicResource DataGridLineBrush}" VerticalGridLinesBrush="{DynamicResource DataGridLineBrush}" MinHeight="380" Grid.Row="1">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding LocalAddress}" ClipboardContentBinding="{x:Null}" Header="Local Address"/>
                     <DataGridTextColumn Binding="{Binding LocalPort}" ClipboardContentBinding="{x:Null}" Header="Local Port"/>
                     <DataGridTextColumn Binding="{Binding RemoteAddress}" ClipboardContentBinding="{x:Null}" Header="Remote Address"/>
                     <DataGridTextColumn Binding="{Binding RemotePort}" ClipboardContentBinding="{x:Null}" Header="Remote Port"/>
                     <DataGridTextColumn Binding="{Binding State}" ClipboardContentBinding="{x:Null}" Header="State"/>
-                    <DataGridTemplateColumn Header="Actions"/>
+                    <!--<DataGridTemplateColumn Header="Actions"/>-->
                 </DataGrid.Columns>
             </DataGrid>
 
-        </StackPanel>
+        </Grid>
 
     </Grid>
 </UserControl>
