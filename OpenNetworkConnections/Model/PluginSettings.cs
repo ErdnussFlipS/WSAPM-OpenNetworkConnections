@@ -16,8 +16,8 @@ namespace de.efsdev.wsapm.OpenNetworkConnections.Model
             var settings = new PluginSettings()
             {
                 NetworkConnectionRules = new List<NetworkConnectionRule>() {
-                    new NetworkConnectionRule() { LocalPort = "80" },
-                    new NetworkConnectionRule() { LocalPort = "443" }
+                    new NetworkConnectionRule() { LocalPort = "80", Description = "HTTP (incoming)" },
+                    new NetworkConnectionRule() { LocalPort = "443", Description = "HTTPS (incoming)" }
                 }
             };
             return settings;

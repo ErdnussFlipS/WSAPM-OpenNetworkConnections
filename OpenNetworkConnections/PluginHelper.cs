@@ -7,7 +7,7 @@ using System.Net.NetworkInformation;
 
 namespace de.efsdev.wsapm.OpenNetworkConnections
 {
-    public class PluginHelper
+    public static class PluginHelper
     {
         public static IList<ActiveNetworkConnection> GetActiveTCPConnections()
         {
@@ -23,7 +23,7 @@ namespace de.efsdev.wsapm.OpenNetworkConnections
             return wrappedActiveConnections;
         }
 
-        public static bool AreRulesApplicable(IList<NetworkConnectionRule> rules)
+        public static Tuple<bool, NetworkConnectionRule> AreRulesApplicable(IList<NetworkConnectionRule> rules)
         {
             var activeNetworkConnections = GetActiveTCPConnections();
 
@@ -33,12 +33,12 @@ namespace de.efsdev.wsapm.OpenNetworkConnections
                 {
                     if (rule.Matches(activeConnection))
                     {
-                        return true;
+                        return new Tuple<bool, NetworkConnectionRule>(true, rule);
                     }
                 }
             }
 
-            return false;
+            return new Tuple<bool, NetworkConnectionRule>(false, null);
         }
 
         public static IList<INetworkConnection> ApplicableOnConnections(NetworkConnectionRule rule)
