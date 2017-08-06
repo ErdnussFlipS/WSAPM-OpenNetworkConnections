@@ -26,7 +26,7 @@ environment:
   VERSION_BRANCH: $(APPVEYOR_BUILD_VERSION)-$(APPVEYOR_REPO_BRANCH)
   SOLUTION_NAME: Windows Server Advanced Power Management Plugins
   PROJECT_NAME: OpenNetworkConnections
-  ARTIFACT_NAME: WSAPM-OpenNetworkConnections
+  ARTIFACT_NAME: WSAPM-OpenNetworkConnections-v$(APPVEYOR_BUILD_VERSION)
   GITHUB_TAG_NAME_BRANCH_MASTER: v$(APPVEYOR_BUILD_VERSION)-master
   GITHUB_AUTH_TOKEN:
     secure: Lt14H6VdlEhGTEo0X7E0MJXdOiAkaGpGA08+khTJeNHXgc8qIBoMqHOotJHJlLiG
@@ -35,7 +35,8 @@ environment:
 skip_tags: true
 
 # Skipping commits with particular message or from user
-#skip_commits:
+skip_commits:
+  message: /appveyor:(.*)/
 
 #---------------------------------#
 #    environment configuration    #
@@ -107,7 +108,7 @@ after_build:
 
 artifacts:
   - path: $(PROJECT_NAME)\bin\$(CONFIGURATION)\
-    name: $(ARTIFACT_NAME)
+    name: $(ARTIFACT_NAME)-$(CONFIGURATION)
 
 #---------------------------------#
 #     deployment configuration    #
@@ -122,8 +123,8 @@ deploy:
     tag: $(GITHUB_TAG_NAME_BRANCH_MASTER)
     release: $(GITHUB_TAG_NAME_BRANCH_MASTER)
     # description needs to be declared, but can be empty, so that github not reject the deploy
-    description: "This is a pre release."
-    artifact: $(ARTIFACT_NAME)
+    description: ""
+    artifact: $(ARTIFACT_NAME)-$(CONFIGURATION)
     draft: false
     prerelease: true
     on:
