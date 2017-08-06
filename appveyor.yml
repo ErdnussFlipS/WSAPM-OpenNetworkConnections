@@ -85,7 +85,7 @@ configuration:
 
 build:
   parallel: true                   # enable MSBuild parallel builds
-  project: $(PROJECT_NAME)/$(PROJECT_NAME).csproj     # path to Visual Studio solution or project
+  project: $(SOLUTION_NAME).sln     # path to Visual Studio solution or project
   # MSBuild verbosity level
   verbosity: minimal                # quiet|minimal|normal|detailed
 
