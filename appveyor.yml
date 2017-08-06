@@ -126,7 +126,7 @@ deploy:
     # description needs to be declared, but can be empty, so that github not reject the deploy
     description: ""
     artifact: $(ARTIFACT_NAME)-$(CONFIGURATION)
-    draft: false
+    draft: true
     prerelease: true
     on:
       branch: master                 # release from master branch only
