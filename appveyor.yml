@@ -59,7 +59,7 @@ cache:
 # scripts that run after cloning repository
 # use - ps for powershell, - cmd for commandline
 install:
-  - nuget restore
+  - cmd: nuget restore
 #  - cmd: cmake --version
 #  - cmd: msbuild /version
 
@@ -82,6 +82,7 @@ platform:
 
 # build Configuration, i.e. Debug, Release, etc.
 configuration:
+  - Debug
   - Release
 
 build:
