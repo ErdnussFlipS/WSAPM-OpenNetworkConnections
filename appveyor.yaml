@@ -58,7 +58,7 @@ cache:
 # scripts that run after cloning repository
 # use - ps for powershell, - cmd for commandline
 install:
-  - cmd: nuget restore
+  - nuget restore
 #  - cmd: cmake --version
 #  - cmd: msbuild /version
 
