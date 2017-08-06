@@ -58,7 +58,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="Wsapm.Extensions">
-      <HintPath>..\..\Windows Server Advanced Power Management\Wsapm.Extensions.dll</HintPath>
+      <HintPath>Dependencies\Wsapm.Extensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
