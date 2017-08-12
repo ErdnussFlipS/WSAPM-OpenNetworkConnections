@@ -8,7 +8,7 @@
 #      general configuration      #
 #---------------------------------#
 # version format
-version: 1.0.{build}.0
+version: 1.0.3.{build}
 
 # branches to build
 branches:
