@@ -35,8 +35,8 @@ environment:
 skip_tags: true
 
 # Skipping commits with particular message or from user
-skip_commits:
-  message: /appveyor:(.*)/
+#skip_commits:
+#  message: /appveyor:(.*)/
 
 #---------------------------------#
 #    environment configuration    #
@@ -130,7 +130,8 @@ deploy:
     prerelease: true
     on:
       branch: master                 # release from master branch only
-      appveyor_repo_tag: false       # deploy on tag push only; default: true
+      message: /appveyor:release(.*)/
+#      appveyor_repo_tag: false       # deploy on tag push only; default: true
 
 
 # to disable deployment
