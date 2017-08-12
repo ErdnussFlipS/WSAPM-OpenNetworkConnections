@@ -7,8 +7,8 @@
 
 Branch  | Status
 --------|--------
-master  | ![Build status](https://img.shields.io/appveyor/ci/ErdnussFlipS/WSAPM-OpenNetworkConnections/master.svg?style=flat-square)
-develop | ![Build status](https://img.shields.io/appveyor/ci/ErdnussFlipS/WSAPM-OpenNetworkConnections/develop.svg?style=flat-square)
+master  | ![Build status: master](https://img.shields.io/appveyor/ci/ErdnussFlipS/WSAPM-OpenNetworkConnections/master.svg?style=flat-square "Build status: master")
+develop | ![Build status: develop](https://img.shields.io/appveyor/ci/ErdnussFlipS/WSAPM-OpenNetworkConnections/develop.svg?style=flat-square "Build status: develop")
 
 
 ## Description
