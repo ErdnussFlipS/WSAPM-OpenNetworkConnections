@@ -27,7 +27,8 @@ environment:
   SOLUTION_NAME: Windows Server Advanced Power Management Plugins
   PROJECT_NAME: OpenNetworkConnections
   ARTIFACT_NAME: WSAPM-OpenNetworkConnections-v$(APPVEYOR_BUILD_VERSION)
-  GITHUB_TAG_NAME_BRANCH_MASTER: v$(APPVEYOR_BUILD_VERSION)-master
+  GITHUB_TAG_NAME_BRANCH_MASTER: version/$(APPVEYOR_BUILD_VERSION)-master
+  GITHUB_RELEASE_NAME_BRANCH_MASTER: v$(APPVEYOR_BUILD_VERSION)-master
   GITHUB_AUTH_TOKEN:
     secure: Lt14H6VdlEhGTEo0X7E0MJXdOiAkaGpGA08+khTJeNHXgc8qIBoMqHOotJHJlLiG
 
@@ -122,7 +123,7 @@ deploy:
   - provider: GitHub
     auth_token: $(GITHUB_AUTH_TOKEN)
     tag: $(GITHUB_TAG_NAME_BRANCH_MASTER)
-    release: $(GITHUB_TAG_NAME_BRANCH_MASTER)
+    release: $(GITHUB_RELEASE_NAME_BRANCH_MASTER)
     # description needs to be declared, but can be empty, so that github not reject the deploy
     description: ""
     artifact: $(ARTIFACT_NAME)-$(CONFIGURATION)
@@ -130,7 +131,7 @@ deploy:
     prerelease: true
     on:
       branch: master                 # release from master branch only
-      message: /appveyor:deploy(.*)/
+      APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED: /(.*)appveyor:deploy/
 #      appveyor_repo_tag: false       # deploy on tag push only; default: true
 
 
