@@ -1,13 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.15
+VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WsapmPluginAdvancedTemplate", "WsapmPluginAdvancedTemplate\WsapmPluginAdvancedTemplate.csproj", "{0ECDDE94-1613-4A65-AAF9-67B67247109D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenNetworkConnections", "OpenNetworkConnections\OpenNetworkConnections.csproj", "{6F7DB30D-EB20-46FA-97C1-4BCFABFE8C99}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenNetworkConnectionsDemo", "OpenNetworkConnectionsDemo\OpenNetworkConnectionsDemo.csproj", "{62C5CF87-A54E-4EB2-B48B-77D5ECEFE0B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFiles", "{B517A307-EFDA-4680-842E-076702127CB8}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

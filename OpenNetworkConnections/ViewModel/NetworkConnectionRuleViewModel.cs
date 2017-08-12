@@ -22,6 +22,9 @@ namespace de.efsdev.wsapm.OpenNetworkConnections.ViewModel
         public string Description { get; set; }
 
         [ViewModelProxyProperty(PropertyName = nameof(ProxyModel))]
+        public RuleInterpretationMode InterpretationMode { get; set; }
+
+        [ViewModelProxyProperty(PropertyName = nameof(ProxyModel))]
         public string LocalAddress { get; set; }
 
         [ViewModelProxyProperty(PropertyName = nameof(ProxyModel))]
@@ -37,7 +40,7 @@ namespace de.efsdev.wsapm.OpenNetworkConnections.ViewModel
         public TcpState? State { get; set; }
 
         public IList<INetworkConnection> ApplicableConnections { get; set; }
-        
+
         public int ApplicableConnectionsCount => CalculateApplicableConnectionsCount();
 
         public NetworkConnectionRuleViewModel() : this(new NetworkConnectionRule()) { }

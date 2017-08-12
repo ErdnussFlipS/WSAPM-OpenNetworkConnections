@@ -11,11 +11,17 @@ using System.Xml.Serialization;
 
 namespace de.efsdev.wsapm.OpenNetworkConnections.Model
 {
+    public enum RuleInterpretationMode
+    {
+        Normal, RegularExpression
+    }
+
     public interface INetworkConnectionRule : INetworkConnection
     {
         Guid ID { get; }
         bool Enabled { get; }
         string Description { get; }
+        RuleInterpretationMode InterpretationMode { get; }
     }
 
     [Serializable]
@@ -28,6 +34,8 @@ namespace de.efsdev.wsapm.OpenNetworkConnections.Model
         public bool Enabled { get; set; }
 
         public string Description { get; set; }
+
+        public RuleInterpretationMode InterpretationMode { get; set; } = RuleInterpretationMode.Normal;
 
         public string LocalAddress { get; set; }
 
@@ -49,29 +57,29 @@ namespace de.efsdev.wsapm.OpenNetworkConnections.Model
 
             var matches = new List<bool>();
 
-            if (!string.IsNullOrEmpty(this.LocalAddress))
+            if (!string.IsNullOrEmpty(LocalAddress))
             {
-                matches.Add(obj.LocalAddress?.Matches(this.LocalAddress) ?? false);
+                matches.Add(Match(LocalAddress, obj.LocalAddress, InterpretationMode));
             }
 
-            if (!string.IsNullOrEmpty(this.LocalPort))
+            if (!string.IsNullOrEmpty(LocalPort))
             {
-                matches.Add(obj.LocalPort?.Matches(this.LocalPort) ?? false);
+                matches.Add(Match(LocalPort, obj.LocalPort, InterpretationMode));
             }
 
-            if (!string.IsNullOrEmpty(this.RemoteAddress))
+            if (!string.IsNullOrEmpty(RemoteAddress))
             {
-                matches.Add(obj.RemoteAddress?.Matches(this.RemoteAddress) ?? false);
+                matches.Add(Match(RemoteAddress, obj.RemoteAddress, InterpretationMode));
             }
 
-            if (!string.IsNullOrEmpty(this.RemotePort))
+            if (!string.IsNullOrEmpty(RemotePort))
             {
-                matches.Add(obj.RemotePort?.Matches(this.RemotePort) ?? false);
+                matches.Add(Match(RemotePort, obj.RemotePort, InterpretationMode));
             }
 
-            if (this.State != null)
+            if (State != null)
             {
-                matches.Add(obj.State?.Equals(this.State) ?? false);
+                matches.Add(obj.State?.Equals(State) ?? false);
             }
 
             if (matches.Count == 0)
@@ -88,6 +96,16 @@ namespace de.efsdev.wsapm.OpenNetworkConnections.Model
             }
 
             return true;
+        }
+
+        private static bool Match(string pattern, string value, RuleInterpretationMode mode)
+        {
+            if (mode == RuleInterpretationMode.Normal)
+            {
+                return value?.Equals(pattern, StringComparison.OrdinalIgnoreCase) ?? false;
+            }
+
+            return value?.Matches(pattern) ?? false;
         }
     }
 }

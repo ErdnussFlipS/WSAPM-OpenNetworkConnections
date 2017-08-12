@@ -10,7 +10,7 @@ using Wsapm.Extensions;
 namespace de.efsdev.wsapm.OpenNetworkConnections
 {
     [Export(typeof(WsapmPluginBase))]
-    [WsapmPlugin("Open network connections", "v1.0.2", "6f7db30d-eb20-46fa-97c1-4bcfabfe8c99")]
+    [WsapmPlugin("Open network connections", "v1.0.3", "6f7db30d-eb20-46fa-97c1-4bcfabfe8c99")]
     public class Plugin : WsapmPluginAdvancedBase
     {
         private PluginView _settingsControl;
