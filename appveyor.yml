@@ -126,11 +126,11 @@ deploy:
     # description needs to be declared, but can be empty, so that github not reject the deploy
     description: ""
     artifact: $(ARTIFACT_NAME)-$(CONFIGURATION)
-    draft: true
+    draft: false
     prerelease: true
     on:
       branch: master                 # release from master branch only
-      message: /appveyor:release(.*)/
+      message: /appveyor:deploy(.*)/
 #      appveyor_repo_tag: false       # deploy on tag push only; default: true
 
 
