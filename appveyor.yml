@@ -15,7 +15,7 @@ branches:
   # whitelist
   only:
     - master
-  #   - dev
+    - develop
 
   # blacklist
   except:
@@ -131,8 +131,8 @@ deploy:
     prerelease: true
     on:
       branch: master                 # release from master branch only
-      APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED: /(.*)appveyor:deploy/
-#      appveyor_repo_tag: false       # deploy on tag push only; default: true
+      #APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED: /(.*)appveyor:deploy/
+      #appveyor_repo_tag: false       # deploy on tag push only; default: true
 
 
 # to disable deployment
