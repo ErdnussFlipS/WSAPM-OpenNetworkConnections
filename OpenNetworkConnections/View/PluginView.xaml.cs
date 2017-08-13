@@ -26,11 +26,13 @@ namespace de.efsdev.wsapm.OpenNetworkConnections.View
     /// </summary>
     public partial class PluginView : UserControl, IWsapmPluginSettingsControl
     {
-        private PluginViewModel ViewModel => ViewModelLocator.PluginViewModel;
+        private PluginViewModel ViewModel;
 
         public PluginView()
         {
             InitializeComponent();
+
+            ViewModel = ViewModelLocator.PluginViewModel;
             ViewModel.OnActiveConnectionsRefreshed += ViewModel_OnActiveConnectionsRefreshed;
             ViewModel.OnAddNewRuleAction += ViewModel_OnAddNewRuleAction;
             this.UpdateDataContext();

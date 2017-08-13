@@ -1,5 +1,6 @@
 ﻿using de.efsdev.wsapm.OpenNetworkConnections.Model;
 using de.efsdev.wsapm.OpenNetworkConnections.View;
+using de.efsdev.wsapm.OpenNetworkConnections.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
