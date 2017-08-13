@@ -1,6 +1,6 @@
-﻿using GitHubUpdateManger.Extensions;
-using GitHubUpdateManger.Library;
-using GitHubUpdateManger.Model;
+﻿using GitHubUpdateManager.Extensions;
+using GitHubUpdateManager.Library;
+using GitHubUpdateManager.Model;
 using Octokit;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GitHubUpdateManger
+namespace GitHubUpdateManager
 {
 	public class GitHubUpdateManager
 	{

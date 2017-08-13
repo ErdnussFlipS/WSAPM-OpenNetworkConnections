@@ -21,44 +21,9 @@ namespace de.efsdev.wsapm.OpenNetworkConnections.ViewModel
         [ObservableProperty]
         public ObservableCollection<NetworkConnectionRuleViewModel> Rules { get; set; }
 
+        public string PluginVersion => PluginHelper.GetPluginAssemblyVersion().ToString();
+
         public IList<ActiveNetworkConnection> ActiveConnections => PluginHelper.GetActiveTCPConnections();
-
-        public void SetSettingsFromObject(object settings)
-        {
-            Settings = (PluginSettings)settings;
-
-            var rules = new ObservableCollection<NetworkConnectionRuleViewModel>();
-            foreach (var rule in Settings.NetworkConnectionRules)
-            {
-                rules.Add(new NetworkConnectionRuleViewModel(rule));
-            }
-
-            Rules = rules;
-            Rules.CollectionChanged += (object sender, NotifyCollectionChangedEventArgs e) =>
-            {
-                if (e.Action == NotifyCollectionChangedAction.Add)
-                {
-                    foreach (var item in e.NewItems) AddRule((item as NetworkConnectionRuleViewModel).ProxyModel);
-                }
-                else if (e.Action == NotifyCollectionChangedAction.Remove)
-                {
-                    foreach (var item in e.OldItems) RemoveRule((item as NetworkConnectionRuleViewModel).ProxyModel);
-                }
-            };
-        }
-
-        public event EventHandler OnActiveConnectionsRefreshed;
-        public event EventHandler<GenericEventArgs<NetworkConnectionRuleViewModel>> OnAddNewRuleAction;
-
-        private void AddRule(NetworkConnectionRule connection)
-        {
-            Settings.NetworkConnectionRules.Add(connection);
-        }
-
-        private void RemoveRule(NetworkConnectionRule connection)
-        {
-            Settings.NetworkConnectionRules.Remove(connection);
-        }
 
         public ICommand ResetToDefaults => new RelayCommand<object>((object data) =>
         {
@@ -84,9 +49,46 @@ namespace de.efsdev.wsapm.OpenNetworkConnections.ViewModel
 
         public ICommand AddActiveRuleCommand { get; set; }
 
-        public ICommand RefreshActiveConnectionsCommand => new RelayCommand<object>(new Action<object>((object data) =>
+        public ICommand RefreshCommand => new RelayCommand<object>(new Action<object>((object data) =>
         {
-            this.OnActiveConnectionsRefreshed(this, null);
+            this.OnDataRefresh(this, null);
         }));
+
+        public event EventHandler OnDataRefresh;
+        public event EventHandler<GenericEventArgs<NetworkConnectionRuleViewModel>> OnAddNewRuleAction;
+
+        public void SetSettingsFromObject(object settings)
+        {
+            Settings = (PluginSettings)settings;
+
+            var rules = new ObservableCollection<NetworkConnectionRuleViewModel>();
+            foreach (var rule in Settings.NetworkConnectionRules)
+            {
+                rules.Add(new NetworkConnectionRuleViewModel(rule));
+            }
+
+            Rules = rules;
+            Rules.CollectionChanged += (object sender, NotifyCollectionChangedEventArgs e) =>
+            {
+                if (e.Action == NotifyCollectionChangedAction.Add)
+                {
+                    foreach (var item in e.NewItems) AddRule((item as NetworkConnectionRuleViewModel).ProxyModel);
+                }
+                else if (e.Action == NotifyCollectionChangedAction.Remove)
+                {
+                    foreach (var item in e.OldItems) RemoveRule((item as NetworkConnectionRuleViewModel).ProxyModel);
+                }
+            };
+        }
+
+        private void AddRule(NetworkConnectionRule connection)
+        {
+            Settings.NetworkConnectionRules.Add(connection);
+        }
+
+        private void RemoveRule(NetworkConnectionRule connection)
+        {
+            Settings.NetworkConnectionRules.Remove(connection);
+        }
     }
 }

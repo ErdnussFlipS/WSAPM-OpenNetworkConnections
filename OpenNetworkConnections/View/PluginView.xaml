@@ -31,6 +31,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Margin="0" Orientation="Vertical">
             <Grid Height="30">
@@ -43,7 +44,7 @@
                     <Button Content="Reset to defaults" Command="{Binding ResetToDefaults, IsAsync=True}" HorizontalContentAlignment="Center" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
                     <Button Content="Delete all" Command="{Binding DeleteAllRulesCommand, IsAsync=True}" HorizontalContentAlignment="Center" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
                     <Button Content="New rule" Command="{Binding AddNewRuleCommand, IsAsync=True}" HorizontalContentAlignment="Center" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
-                    <Button Content="Refresh" Command="{Binding RefreshActiveConnectionsCommand, IsAsync=True}" HorizontalContentAlignment="Center" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
+                    <Button Content="Refresh" Command="{Binding RefreshCommand, IsAsync=True}" HorizontalContentAlignment="Center" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
                 </StackPanel>
             </Grid>
             <DataGrid x:Name="dataGridRules" Margin="0" ItemsSource="{Binding Rules, Mode=TwoWay}" MinHeight="150" MaxHeight="500" AutoGenerateColumns="False" HorizontalGridLinesBrush="{DynamicResource DataGridLineBrush}" VerticalGridLinesBrush="{DynamicResource DataGridLineBrush}">
@@ -86,6 +87,12 @@
             </DataGrid>
 
         </Grid>
-
+        <Grid Grid.Row="2" Height="30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StatusBarItem Grid.Column="2" Content="{Binding PluginVersion, Mode=OneWay}"/>
+        </Grid>
     </Grid>
 </UserControl>

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GitHubUpdateManger.Extensions
+namespace GitHubUpdateManager.Extensions
 {
 	public static class FileSystemExtensions
 	{

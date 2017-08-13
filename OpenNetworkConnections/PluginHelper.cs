@@ -4,11 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Net.NetworkInformation;
+using de.efsdev.wsapm.OpenNetworkConnections.Library.Extensions;
+using Wsapm.Extensions;
 
 namespace de.efsdev.wsapm.OpenNetworkConnections
 {
     public static class PluginHelper
     {
+        public static Version GetPluginVersion()
+        {
+            return new Version(typeof(Plugin).GetAttributeValue((WsapmPluginAttribute pluginAtt) => pluginAtt.Version));
+        }
+
+        public static Version GetPluginAssemblyVersion()
+        {
+            return typeof(Plugin).Assembly.GetVersion();
+        }
+
         public static IList<ActiveNetworkConnection> GetActiveTCPConnections()
         {
             var properties = IPGlobalProperties.GetIPGlobalProperties();

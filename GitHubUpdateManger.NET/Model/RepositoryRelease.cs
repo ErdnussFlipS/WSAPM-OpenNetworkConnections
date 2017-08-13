@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace GitHubUpdateManger.Model
+namespace GitHubUpdateManager.Model
 {
 	public class RepositoryRelease
 	{

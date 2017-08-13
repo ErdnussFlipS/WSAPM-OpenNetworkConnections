@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GitHubUpdateManger.Model
+namespace GitHubUpdateManager.Model
 {
 	public class DownloadedReleaseAsset
 	{

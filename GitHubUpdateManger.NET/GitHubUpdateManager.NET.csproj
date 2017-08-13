@@ -7,8 +7,8 @@
     <ProjectGuid>{555F5A60-1AAD-47B5-B51F-9803DA91C5F5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GitHubUpdateManger</RootNamespace>
-    <AssemblyName>GitHubUpdateManger.NET</AssemblyName>
+    <RootNamespace>GitHubUpdateManager</RootNamespace>
+    <AssemblyName>GitHubUpdateManager.NET</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

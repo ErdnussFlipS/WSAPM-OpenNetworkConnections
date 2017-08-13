@@ -33,7 +33,7 @@ namespace de.efsdev.wsapm.OpenNetworkConnections.View
             InitializeComponent();
 
             ViewModel = ViewModelLocator.PluginViewModel;
-            ViewModel.OnActiveConnectionsRefreshed += ViewModel_OnActiveConnectionsRefreshed;
+            ViewModel.OnDataRefresh += ViewModel_OnActiveConnectionsRefreshed;
             ViewModel.OnAddNewRuleAction += ViewModel_OnAddNewRuleAction;
             this.UpdateDataContext();
         }
