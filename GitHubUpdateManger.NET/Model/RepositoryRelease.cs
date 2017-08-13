@@ -10,44 +10,39 @@ namespace GitHubUpdateManger.Model
 {
 	public class RepositoryRelease
 	{
-		private const string VERSION_PATTERN = @"(\d+(\.\d+){1,4})";
+		private const string STANDARD_VERSION_PATTERN = @"(\d+(\.\d+){1,3})";
 
-		private Release githubRelease { get; set; }
+		private Release _githubRelease { get; set; }
 
-		private List<ReleaseAsset> githubReleaseAssets { get; set; }
+		public int ID => _githubRelease.Id;
 
-		public int ID => githubRelease.Id;
+		public string Name => _githubRelease.Name;
 
-		public string Name => githubRelease.Name;
+        private string _versionPattern { get; set; }
+        public Version Version { get; private set; }
 
-		public Version Version { get; private set; }
+		public DateTime PublishedAt => _githubRelease.CreatedAt.LocalDateTime;
 
-		public DateTime PublishedAt => githubRelease.CreatedAt.LocalDateTime;
+		public string Description => _githubRelease.Body;
 
-		public string Description => githubRelease.Body;
+        public List<ReleaseAsset> Assets { get; internal set; }
+        public List<DownloadedReleaseAsset> AssetsDownloaded { get; internal set; } = new List<DownloadedReleaseAsset>();
+        public string AssetsDownloadLocation { get; internal set; }
 
-		public List<ReleaseAsset> Assets => githubReleaseAssets;
-		public List<DownloadedReleaseAsset> AssetsDownloaded { get; internal set; }
-
-		internal RepositoryRelease(Release release, List<ReleaseAsset> assets)
+		internal RepositoryRelease(Release release, List<ReleaseAsset> assets, string versionPattern)
 		{
-			if (release == null)
-			{
-				throw new ArgumentNullException(nameof(release));
-			}
+            _githubRelease = release ?? throw new ArgumentNullException(nameof(release));
+			Assets = assets;
+            _versionPattern = versionPattern ?? STANDARD_VERSION_PATTERN;
 
-			githubRelease = release;
-			githubReleaseAssets = assets;
-			parseReleaseName();
-
-			AssetsDownloaded = new List<DownloadedReleaseAsset>();
+            ParseReleaseName();
 		}
 
-		private void parseReleaseName()
+		private void ParseReleaseName()
 		{
-			var name = githubRelease.Name;
+			var name = _githubRelease.Name;
 
-			var result = Regex.Match(name, VERSION_PATTERN);
+			var result = Regex.Match(name, _versionPattern);
 
 			if (result.Success)
 			{

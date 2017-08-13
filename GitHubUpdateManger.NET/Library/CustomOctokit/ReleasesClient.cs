@@ -11,17 +11,18 @@ namespace GitHubUpdateManger.Library.CustomOctokit
 	{
 		public ReleasesClient(IApiConnection con) : base(con) { }
 
-
 		public Task<IReadOnlyList<Release>> GetPaginatedAsync(string owner, string name, int page, int perPage)
 		{
 			Ensure.ArgumentNotNullOrEmptyString(owner, nameof(owner));
-			Ensure.ArgumentNotNullOrEmptyString(name, "repository name");
+			Ensure.ArgumentNotNullOrEmptyString(name, nameof(name));
 
 			var endpoint = ApiUrls.Releases(owner, name);
-			var parameter = new Dictionary<string, string>();
-			parameter.Add("page", page.ToString());
-			parameter.Add("per_page", perPage.ToString());
-			return ApiConnection.GetAll<Release>(endpoint, parameter, "application/vnd.github.v3");
+            var parameter = new Dictionary<string, string>
+            {
+                { "page", page.ToString() },
+                { "per_page", perPage.ToString() }
+            };
+            return ApiConnection.GetAll<Release>(endpoint, parameter, "application/vnd.github.v3");
 		}
 	}
 }

@@ -9,12 +9,12 @@ namespace GitHubUpdateManger.Library.CustomOctokit
 {
 	class GitHubClient : Octokit.GitHubClient
 	{
-		public new ReleasesClient Release { protected set; get; }
+		public ReleasesClient Releases { protected set; get; }
 
 		public GitHubClient(ProductHeaderValue productInformation) : base(productInformation)
 		{
 			var apiConnection = new ApiConnection(Connection);
-			Release = new ReleasesClient(apiConnection);
+			Releases = new ReleasesClient(apiConnection);
 		}
 	}
 }
