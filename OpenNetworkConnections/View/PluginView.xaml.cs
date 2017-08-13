@@ -3,6 +3,7 @@ using de.efsdev.wsapm.OpenNetworkConnections.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -38,6 +39,12 @@ namespace de.efsdev.wsapm.OpenNetworkConnections.View
             this.UpdateDataContext();
         }
 
+        private void UpdateDataContext()
+        {
+            this.DataContext = null;
+            this.DataContext = ViewModel;
+        }
+
         private void ViewModel_OnActiveConnectionsRefreshed(object sender, EventArgs e)
         {
             this.UpdateDataContext();
@@ -48,17 +55,11 @@ namespace de.efsdev.wsapm.OpenNetworkConnections.View
             this.dataGridRules.SelectedItem = e.EventData;
         }
 
-        private void UpdateDataContext()
-        {
-            this.DataContext = null;
-            this.DataContext = ViewModel;
-        }
-
         public object GetSettingsBeforeSave()
         {
             // Build up a new instance of your settings class here 
             // and fill it with the elements from your UI.
-            return ViewModel.Settings;
+            return ViewModel.GetSettingsForSaving();
         }
 
         public void SetSettings(object settings)

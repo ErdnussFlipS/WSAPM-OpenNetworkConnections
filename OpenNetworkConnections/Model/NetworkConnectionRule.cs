@@ -22,30 +22,50 @@ namespace de.efsdev.wsapm.OpenNetworkConnections.Model
         bool Enabled { get; }
         string Description { get; }
         RuleInterpretationMode InterpretationMode { get; }
+
+        bool IsEmpty();
     }
 
     [Serializable]
-    [ObservableObject]
-    public class NetworkConnectionRule : ObservableObject, INetworkConnectionRule
+    public class NetworkConnectionRule : INetworkConnectionRule
     {
         #region INetworkConnectionRule
         public Guid ID { get; set; } = Guid.NewGuid();
 
         public bool Enabled { get; set; }
 
+        [TrimWhitespace]
         public string Description { get; set; }
 
         public RuleInterpretationMode InterpretationMode { get; set; } = RuleInterpretationMode.Normal;
 
+        [TrimWhitespace]
         public string LocalAddress { get; set; }
 
+        [TrimWhitespace]
         public string LocalPort { get; set; }
 
+        [TrimWhitespace]
         public string RemoteAddress { get; set; }
 
+        [TrimWhitespace]
         public string RemotePort { get; set; }
 
         public TcpState? State { get; set; }
+
+        public bool IsEmpty()
+        {
+            var isEmpty = true;
+
+            isEmpty &= string.IsNullOrEmpty(Description);
+            isEmpty &= string.IsNullOrEmpty(LocalAddress);
+            isEmpty &= string.IsNullOrEmpty(LocalPort);
+            isEmpty &= string.IsNullOrEmpty(RemoteAddress);
+            isEmpty &= string.IsNullOrEmpty(RemotePort);
+            isEmpty &= State == null;
+
+            return isEmpty;
+        }
         #endregion
 
         public bool Matches(INetworkConnection obj)

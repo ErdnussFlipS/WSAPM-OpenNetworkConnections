@@ -1,5 +1,6 @@
 ﻿using de.efsdev.wsapm.OpenNetworkConnections.AOP;
 using de.efsdev.wsapm.OpenNetworkConnections.Library;
+using de.efsdev.wsapm.OpenNetworkConnections.Library.Extensions;
 using de.efsdev.wsapm.OpenNetworkConnections.Model;
 using System;
 using System.Collections.Generic;
@@ -64,7 +65,7 @@ namespace de.efsdev.wsapm.OpenNetworkConnections.ViewModel
             var rules = new ObservableCollection<NetworkConnectionRuleViewModel>();
             foreach (var rule in Settings.NetworkConnectionRules)
             {
-                rules.Add(new NetworkConnectionRuleViewModel(rule));
+                rules.Add(PrepareRuleViewModel(new NetworkConnectionRuleViewModel(rule)));
             }
 
             Rules = rules;
@@ -72,13 +73,35 @@ namespace de.efsdev.wsapm.OpenNetworkConnections.ViewModel
             {
                 if (e.Action == NotifyCollectionChangedAction.Add)
                 {
-                    foreach (var item in e.NewItems) AddRule((item as NetworkConnectionRuleViewModel).ProxyModel);
+                    foreach (var item in e.NewItems) AddRule(PrepareRuleViewModel((item as NetworkConnectionRuleViewModel)).ProxyModel);
                 }
                 else if (e.Action == NotifyCollectionChangedAction.Remove)
                 {
                     foreach (var item in e.OldItems) RemoveRule((item as NetworkConnectionRuleViewModel).ProxyModel);
                 }
             };
+        }
+
+        public PluginSettings GetSettingsForSaving()
+        {
+            Settings.NetworkConnectionRules.RemoveAll((rule) => { return rule.IsEmpty(); });
+            return Settings;
+        }
+
+        private NetworkConnectionRuleViewModel PrepareRuleViewModel(NetworkConnectionRuleViewModel ruleViewModel)
+        {
+            ruleViewModel.PropertyChanged += (sender, e) => {
+                ChangedRuleViewModel((NetworkConnectionRuleViewModel)sender);
+            };
+            return ruleViewModel;
+        }
+
+        private void ChangedRuleViewModel(NetworkConnectionRuleViewModel ruleViewModel)
+        {
+            if (ruleViewModel.IsEmpty())
+            {
+                Rules.Remove(ruleViewModel);
+            }
         }
 
         private void AddRule(NetworkConnectionRule connection)

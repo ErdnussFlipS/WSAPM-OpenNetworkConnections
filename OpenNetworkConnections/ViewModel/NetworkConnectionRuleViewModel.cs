@@ -5,10 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Net.NetworkInformation;
 using de.efsdev.wsapm.OpenNetworkConnections.AOP.ViewModelProxy;
+using de.efsdev.wsapm.OpenNetworkConnections.AOP;
+using de.efsdev.wsapm.OpenNetworkConnections.Library;
 
 namespace de.efsdev.wsapm.OpenNetworkConnections.ViewModel
 {
-    public class NetworkConnectionRuleViewModel : INetworkConnectionRule, IViewModelProxy<NetworkConnectionRule>
+    [ObservableObject]
+    public class NetworkConnectionRuleViewModel : ObservableObject, INetworkConnectionRule, IViewModelProxy<NetworkConnectionRule>
     {
         public NetworkConnectionRule ProxyModel { get; private set; }
 
@@ -38,6 +41,8 @@ namespace de.efsdev.wsapm.OpenNetworkConnections.ViewModel
 
         [ViewModelProxyProperty(PropertyName = nameof(ProxyModel))]
         public TcpState? State { get; set; }
+
+        public bool IsEmpty() => ProxyModel.IsEmpty();
 
         public IList<INetworkConnection> ApplicableConnections { get; set; }
 

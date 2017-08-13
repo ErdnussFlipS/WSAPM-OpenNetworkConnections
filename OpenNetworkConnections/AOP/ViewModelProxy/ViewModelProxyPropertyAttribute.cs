@@ -1,4 +1,5 @@
 ﻿using ArxOne.MrAdvice.Advice;
+using ArxOne.MrAdvice.Annotation;
 using de.efsdev.wsapm.OpenNetworkConnections.Library.Extensions;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Text;
 namespace de.efsdev.wsapm.OpenNetworkConnections.AOP.ViewModelProxy
 {
     [AttributeUsage(AttributeTargets.Property)]
+    [Priority(AspectPriority.ViewModelProxy)]
     public class ViewModelProxyPropertyAttribute : Attribute, IPropertyAdvice
     {
         public string PropertyName { get; set; }

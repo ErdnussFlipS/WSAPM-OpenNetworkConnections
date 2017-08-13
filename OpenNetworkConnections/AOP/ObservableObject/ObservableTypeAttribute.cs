@@ -1,4 +1,5 @@
 ﻿using ArxOne.MrAdvice.Advice;
+using ArxOne.MrAdvice.Annotation;
 using de.efsdev.wsapm.OpenNetworkConnections.Library;
 using de.efsdev.wsapm.OpenNetworkConnections.Library.Extensions;
 using System;
@@ -8,6 +9,7 @@ using System.Text;
 
 namespace de.efsdev.wsapm.OpenNetworkConnections.AOP
 {
+    [Priority(AspectPriority.ObservableType)]
     public abstract class ObservableTypeAttribute : Attribute, IPropertyAdvice
     {
         public void Advise(PropertyAdviceContext propertyContext)

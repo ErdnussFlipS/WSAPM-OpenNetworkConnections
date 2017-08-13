@@ -63,12 +63,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AOP\AspectPriority.cs" />
+    <Compile Include="AOP\TrimWhitespaceAttribute.cs" />
     <Compile Include="AOP\ObservableObject\ObservableTypeAttribute.cs" />
     <Compile Include="AOP\ViewModelProxy\IViewModelProxy.cs" />
     <Compile Include="AOP\ViewModelProxy\ViewModelProxyList.cs" />
     <Compile Include="AOP\ViewModelProxy\ViewModelProxyPropertyAttribute.cs" />
     <Compile Include="Library\EnumEnabledDisabled.cs" />
     <Compile Include="Library\Extensions\AssemblyExtension.cs" />
+    <Compile Include="Library\Extensions\CollectionExtension.cs" />
     <Compile Include="Library\Extensions\PropertyInfoExtension.cs" />
     <Compile Include="Library\Extensions\StringExtension.cs" />
     <Compile Include="Library\Extensions\TypeExtension.cs" />
