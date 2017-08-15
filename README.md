@@ -2,8 +2,8 @@
 
 [![Build status](https://img.shields.io/appveyor/ci/ErdnussFlipS/WSAPM-OpenNetworkConnections.svg?style=flat-square)](https://ci.appveyor.com/project/ErdnussFlipS/WSAPM-OpenNetworkConnections)
 [![Issues](https://img.shields.io/github/issues/ErdnussFlipS/WSAPM-OpenNetworkConnections.svg?style=flat-square)](https://github.com/ErdnussFlipS/WSAPM-OpenNetworkConnections/issues)
-[![Release](https://img.shields.io/github/release/ErdnussFlipS/WSAPM-OpenNetworkConnections.svg?style=flat-square)](https://github.com/ErdnussFlipS/WSAPM-OpenNetworkConnections/releases/latest)
-[![GNU GPL v3 license](https://img.shields.io/github/license/ErdnussFlipS/WSAPM-OpenNetworkConnections.svg?style=flat-square)](https://github.com/ErdnussFlipS/WSAPM-OpenNetworkConnections/blob/master/LICENSE)
+[![Release](https://img.shields.io/github/release/ErdnussFlipS/WSAPM-OpenNetworkConnections/all.svg?style=flat-square)](https://github.com/ErdnussFlipS/WSAPM-OpenNetworkConnections/releases)
+[![GNU LGPL v3 license](https://img.shields.io/github/license/ErdnussFlipS/WSAPM-OpenNetworkConnections.svg?style=flat-square)](https://github.com/ErdnussFlipS/WSAPM-OpenNetworkConnections/blob/master/LICENSE)
 
 Branch  | Status
 --------|--------
