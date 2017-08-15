@@ -61,6 +61,7 @@ namespace de.efsdev.wsapm.OpenNetworkConnections.ViewModel
         public void SetSettingsFromObject(object settings)
         {
             Settings = (PluginSettings)settings;
+            Settings.NetworkConnectionRules.RemoveAll((rule) => { return rule.IsEmpty(); });
 
             var rules = new ObservableCollection<NetworkConnectionRuleViewModel>();
             foreach (var rule in Settings.NetworkConnectionRules)
@@ -90,7 +91,8 @@ namespace de.efsdev.wsapm.OpenNetworkConnections.ViewModel
 
         private NetworkConnectionRuleViewModel PrepareRuleViewModel(NetworkConnectionRuleViewModel ruleViewModel)
         {
-            ruleViewModel.PropertyChanged += (sender, e) => {
+            ruleViewModel.PropertyChanged += (sender, e) =>
+            {
                 ChangedRuleViewModel((NetworkConnectionRuleViewModel)sender);
             };
             return ruleViewModel;

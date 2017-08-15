@@ -7,9 +7,27 @@ using System.Net.NetworkInformation;
 using de.efsdev.wsapm.OpenNetworkConnections.AOP.ViewModelProxy;
 using de.efsdev.wsapm.OpenNetworkConnections.AOP;
 using de.efsdev.wsapm.OpenNetworkConnections.Library;
+using System.Windows.Controls;
+using System.Globalization;
+using System.Windows.Data;
 
 namespace de.efsdev.wsapm.OpenNetworkConnections.ViewModel
 {
+    public class NetworkConnectionRuleValidationRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            var bindingGroup = value as BindingGroup;
+
+            if (bindingGroup.Items.Count == 0 || !(bindingGroup.Items[0] is INetworkConnectionRule rule))
+            {
+                throw new InvalidProgramException($"Can not validate. Value type is {value?.GetType()} but doesn't implements {typeof(INetworkConnectionRule)}");
+            }
+
+            return new ValidationResult(!rule.IsEmpty(), null);
+        }
+    }
+
     [ObservableObject]
     public class NetworkConnectionRuleViewModel : ObservableObject, INetworkConnectionRule, IViewModelProxy<NetworkConnectionRule>
     {

@@ -48,6 +48,9 @@
                 </StackPanel>
             </Grid>
             <DataGrid x:Name="dataGridRules" Margin="0" ItemsSource="{Binding Rules, Mode=TwoWay}" MinHeight="150" MaxHeight="500" AutoGenerateColumns="False" HorizontalGridLinesBrush="{DynamicResource DataGridLineBrush}" VerticalGridLinesBrush="{DynamicResource DataGridLineBrush}">
+                <DataGrid.RowValidationRules>
+                    <viewmodel:NetworkConnectionRuleValidationRule/>
+                </DataGrid.RowValidationRules>
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn Binding="{Binding Enabled}" ClipboardContentBinding="{x:Null}" Header="Enabled"/>
                     <DataGridTextColumn Binding="{Binding ID}" IsReadOnly="True" ClipboardContentBinding="{x:Null}" Header="ID"/>
