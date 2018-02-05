@@ -40,12 +40,12 @@
     <Compile Include="ComBridge\Structs.cs" />
     <Compile Include="IPHelperAPI.cs" />
     <Compile Include="ComBridge\IpHlpApi.cs" />
-    <Compile Include="IpHlpApiComBridge.cs" />
+    <Compile Include="Deprecated\IpHlpApiComBridge.cs" />
     <Compile Include="ComBridge\Constants.cs" />
     <Compile Include="ComBridge\Methods.cs" />
-    <Compile Include="IpHlpApiUtils.cs" />
-    <Compile Include="NetworkTransmission.cs" />
-    <Compile Include="NetworkTransmissionHelper.cs" />
+    <Compile Include="Deprecated\IpHlpApiUtils.cs" />
+    <Compile Include="Deprecated\NetworkTransmission.cs" />
+    <Compile Include="Deprecated\NetworkTransmissionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

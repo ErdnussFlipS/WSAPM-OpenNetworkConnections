@@ -14,12 +14,12 @@ namespace de.efsdev.DotNetExtensionLibrary.Extensions
             void SetFieldsWithPointer(IntPtr pointer);
         }
 
-        public static T[] PtrToArray<T>(IntPtr pointer, int arraySize, Func<IntPtr, T> readItem)
+        public static T[] PtrToArray<T>(IntPtr pointer, uint arraySize, Func<IntPtr, T> readItem)
         {
             IntPtr currentPointer = pointer;
 
             T[] array = new T[arraySize];
-            for (int i = 0; i < array.Length; i++)
+            for (uint i = 0; i < array.Length; i++)
             {
                 array[i] = readItem.Invoke(currentPointer);
                 currentPointer += Marshal.SizeOf(typeof(T));

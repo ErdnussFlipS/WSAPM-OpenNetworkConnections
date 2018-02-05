@@ -68,15 +68,18 @@ namespace IpHelperAPI.ComBridge
 
             object value = null;
 
+            var OWNER_PID_LIST = new List<TCP_TABLE_CLASS>() { TCP_TABLE_CLASS.OWNER_PID_ALL, TCP_TABLE_CLASS.OWNER_PID_CONNECTIONS, TCP_TABLE_CLASS.OWNER_PID_LISTENER };
+            var OWNER_MODULE_LIST = new List<TCP_TABLE_CLASS>() { TCP_TABLE_CLASS.OWNER_MODULE_ALL, TCP_TABLE_CLASS.OWNER_MODULE_CONNECTIONS, TCP_TABLE_CLASS.OWNER_MODULE_LISTENER };
+
             if (ulAf == Methods.AF.INET)
             {
                 value = MarshalExtension.PtrToStructure<MIB_TCPTABLE>(pTcpTable);
             }
-            else if ((new List<TCP_TABLE_CLASS>() { TCP_TABLE_CLASS.OWNER_PID_ALL, TCP_TABLE_CLASS.OWNER_PID_CONNECTIONS, TCP_TABLE_CLASS.OWNER_PID_LISTENER }).Contains(TableClass))
+            else if (OWNER_PID_LIST.Contains(TableClass))
             {
                 value = MarshalExtension.PtrToStructure<MIB_TCP6TABLE_OWNER_PID>(pTcpTable);
             }
-            else if ((new List<TCP_TABLE_CLASS>() { TCP_TABLE_CLASS.OWNER_MODULE_ALL, TCP_TABLE_CLASS.OWNER_MODULE_CONNECTIONS, TCP_TABLE_CLASS.OWNER_MODULE_LISTENER }).Contains(TableClass))
+            else if (OWNER_MODULE_LIST.Contains(TableClass))
             {
                 value = MarshalExtension.PtrToStructure<MIB_TCP6TABLE_OWNER_MODULE>(pTcpTable);
             }

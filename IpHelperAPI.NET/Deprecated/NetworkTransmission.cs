@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Net;
 
-namespace IpHelperAPI
+namespace IpHelperAPI.Deprecated
 {
     class MIB_TCP_STATEAttribute : UnderlyingValueAttribute
     {

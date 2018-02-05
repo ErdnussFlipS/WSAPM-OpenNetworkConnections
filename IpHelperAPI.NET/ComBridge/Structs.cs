@@ -54,7 +54,11 @@ namespace IpHelperAPI.ComBridge.Structs
             dwNumEntries = (uint)Marshal.ReadInt32(pointerValue);
 
             pointerValue += sizeof(uint);
-            table = MarshalExtension.PtrToArray(pointerValue, (int)dwNumEntries, innerPointer => MarshalExtension.PtrToStructure<MIB_TCPROW>(innerPointer));
+            table = MarshalExtension.PtrToArray(
+                pointerValue, 
+                dwNumEntries, 
+                innerPointer => MarshalExtension.PtrToStructure<MIB_TCPROW>(innerPointer)
+                );
         }
 
         [StructLayout(LayoutKind.Explicit)]
@@ -98,7 +102,7 @@ namespace IpHelperAPI.ComBridge.Structs
             dwNumEntries = (uint)Marshal.ReadInt32(pointerValue);
 
             pointerValue += sizeof(uint);
-            table = MarshalExtension.PtrToArray(pointerValue, (int)dwNumEntries, innerPointer => MarshalExtension.PtrToStructure<MIB_TCP6ROW_OWNER_PID>(innerPointer));
+            table = MarshalExtension.PtrToArray(pointerValue, dwNumEntries, innerPointer => MarshalExtension.PtrToStructure<MIB_TCP6ROW_OWNER_PID>(innerPointer));
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -145,7 +149,7 @@ namespace IpHelperAPI.ComBridge.Structs
             dwNumEntries = (uint)Marshal.ReadInt32(pointerValue);
 
             pointerValue += sizeof(Int32);
-            table = MarshalExtension.PtrToArray(pointerValue, (int)dwNumEntries, innerPointer => MarshalExtension.PtrToStructure<MIB_TCP6ROW_OWNER_MODULE>(innerPointer));
+            table = MarshalExtension.PtrToArray(pointerValue, dwNumEntries, innerPointer => MarshalExtension.PtrToStructure<MIB_TCP6ROW_OWNER_MODULE>(innerPointer));
         }
 
         [StructLayout(LayoutKind.Sequential)]

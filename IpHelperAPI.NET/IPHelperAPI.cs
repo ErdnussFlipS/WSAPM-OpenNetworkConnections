@@ -12,7 +12,8 @@ namespace IpHelperAPI
     {
         public static void TestAPI()
         {
-            var table = IpHlpApi.GetExtendedTcpTable(Methods.AF.INET6, TCP_TABLE_CLASS.OWNER_PID_ALL);
+            var tableInt4 = IpHlpApi.GetExtendedTcpTable(Methods.AF.INET, TCP_TABLE_CLASS.OWNER_PID_ALL);
+            var tableInt6 = IpHlpApi.GetExtendedTcpTable(Methods.AF.INET6, TCP_TABLE_CLASS.OWNER_PID_ALL);
             Debugger.Break();
         }
 

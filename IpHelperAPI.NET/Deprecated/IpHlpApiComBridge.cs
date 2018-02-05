@@ -4,7 +4,7 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace IpHelperAPI
+namespace IpHelperAPI.Deprecated
 {
     static class IpHlpApiComBridge
     {

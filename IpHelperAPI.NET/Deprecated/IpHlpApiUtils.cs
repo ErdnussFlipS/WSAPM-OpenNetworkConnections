@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Text;
 
-namespace IpHelperAPI
+namespace IpHelperAPI.Deprecated
 {
     static class IpHlpApiUtils
     {
