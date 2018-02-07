@@ -18,3 +18,5 @@ Open Network Connections is a plugin for [Windows Server Advanced Power Manageme
 - https://www.codeproject.com/Articles/14423/Getting-the-active-TCP-UDP-connections-using-the-G
 - https://msdn.microsoft.com/en-us/library/windows/desktop/aa383751(v=vs.85).aspx
 - https://www.codeproject.com/Articles/66243/Marshaling-with-Csharp-Chapter-3-Marshaling-Compou.aspx
+- https://stackoverflow.com/questions/1672062/how-to-close-a-tcp-connection-by-port
+- https://msdn.microsoft.com/en-us/library/windows/desktop/aa366909(v=vs.85).aspx
